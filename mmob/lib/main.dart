@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,7 +50,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
 
+  String _message = 'Unknown';
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -59,6 +62,17 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  Future<void> _checkAvailability() async {
+    try {
+      var messageFromAndroid = await methodChannel.invokeMethod('getMessage');
+      setState(() {
+        _message = messageFromAndroid.toString();
+      });
+    } on PlatformException catch (e) {
+      print(e.message);
+    }
   }
 
   @override
@@ -96,17 +110,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'What?',
             ),
             Text(
-              '$_counter',
+              _message,
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _checkAvailability,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
