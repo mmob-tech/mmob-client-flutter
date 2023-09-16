@@ -4,28 +4,18 @@
 //
 //  Created by Alex Woon on 16/09/2023.
 //
-//
-//  MmobViewController.swift
-//
 
 import MmobClient
-import UIKit
-import WebKit
+import SwiftUI
 
-class MmobViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
-    var webView: MmobClientView!
+
+struct MMOBEcosystemView: UIViewRepresentable {
+    
     let client = MmobClient()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func loadView() {
-        super.loadView()
-        view = getMarketplace()
-    }
-
-    func getMarketplace() -> MmobClientView {
+    @AppStorage("instance_domain") var instance_domain: String = "ef-network.com"
+    
+    func makeUIView(context: Context) -> MmobClientView  {
         let configuration = MmobIntegration(
             configuration: MmobIntegrationConfiguration(
                 cp_id: "cp_9AidXA6tIpz7RR4thMrrJ",
@@ -46,5 +36,14 @@ class MmobViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         )
 
         return client.loadIntegration(mmobConfiguration: configuration, instanceDomain: InstanceDomain.EFNETWORK)
+    }
+    func updateUIView(_ uiView: MmobClientView, context: Context) {
+        print("update UI")
+    }
+    
+}
+struct MMOBEcosystemView_Previews: PreviewProvider {
+    static var previews: some View {
+        MMOBEcosystemView()
     }
 }

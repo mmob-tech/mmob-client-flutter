@@ -25,5 +25,23 @@
             </objects>
             <point key="canvasLocation" x="-26" y="-77"/>
         </scene>
+          <!--MMOB boot View Controller-->
+        <scene sceneID="1Ov-QF-bjE">
+            <objects>
+                <viewController storyboardIdentifier="MmobViewController" id="gOS-SP-BxJ" customClass="MmobViewController" customModule="Runner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kA9-Dh-ejO"/>
+                        <viewControllerLayoutGuide type="bottom" id="bq1-8z-QNM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t4p-ZX-fmv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="luu-Nf-voP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1371" y="102"/>
+        </scene>
     </scenes>
 </document>
