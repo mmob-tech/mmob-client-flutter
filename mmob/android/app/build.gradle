@@ -60,6 +60,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    namespace 'com.example.mmob'
 }
 
 flutter {
@@ -67,5 +68,6 @@ flutter {
 }
 
 dependencies {
+    implementation 'com.github.mmob-tech:mmob-client-android:v0.4.10'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
