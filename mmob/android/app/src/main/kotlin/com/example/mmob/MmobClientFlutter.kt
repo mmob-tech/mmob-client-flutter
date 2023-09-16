@@ -1,18 +1,18 @@
 package com.example.mmob
 
 import android.os.Bundle
-
-import io.flutter.embedding.android.FlutterActivity
 import com.mmob.mmobclient.InstanceDomain
 import com.mmob.mmobclient.MmobClient
 import com.mmob.mmobclient.MmobView
+import io.flutter.embedding.android.FlutterActivity
+import android.content.Intent;
 
 
 class MmobClientFlutter : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        intent = Intent()
         val mmobView: MmobView = findViewById(R.id.mmob_view)
 
         val client = MmobClient(mmobView, applicationContext, InstanceDomain.EFNETWORK)
@@ -28,7 +28,7 @@ class MmobClientFlutter : FlutterActivity() {
 
                 )
         )
-
+        print(integration)
         client.loadIntegration(integration = integration, customerInfo = customerInfo)
         //   client.loadDistribution(distribution = distribution, customerInfo = customerInfo)
     }

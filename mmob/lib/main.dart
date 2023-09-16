@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
 
-  String _message = 'Unknown';
+  String _message = 'Test';
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _checkAvailability() async {
     try {
-      var messageFromAndroid = await methodChannel.invokeMethod('getMessage');
+      var messageFromAndroid = await methodChannel.invokeMethod('boot');
       setState(() {
         _message = messageFromAndroid.toString();
       });
