@@ -18,13 +18,21 @@ class MmobClientFlutter : FlutterActivity() {
         val client = MmobClient(mmobView, applicationContext, InstanceDomain.EFNETWORK)
 
         val integration = MmobClient.MmobIntegrationConfiguration(
-                cp_id = "cp_TMaiVSyyzBx2rZqF-PqdY",
-                cp_deployment_id = "cpd_62FuIeyfZh51gaYkBIr6Z",
+                cp_id = "cp_9AidXA6tIpz7RR4thMrrJ",
+                cp_deployment_id = "cpd_7NNG7KCUjOjagv5Jxt5Ov",
                 environment = "stag"
         )
 
         val customerInfo = MmobClient.MmobCustomerInfo(
                 customerInfo = MmobClient.MmobCustomerInfo.Configuration(
+                    email = "john.smith@example.com",
+                    first_name = "John",
+                    surname = "Smith",
+                    title = "Mr",
+                    building_number = "Flat 81",
+                    address_1 = "Marconi Square",
+                    town_city = "Chelmsford",
+                    postcode = "CM1 1XX"
 
                 )
         )
