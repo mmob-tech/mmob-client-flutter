@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-26" y="-77"/>
         </scene>
-          <!--MMOB boot View Controller-->
+        <!--Mmob View Controller-->
         <scene sceneID="1Ov-QF-bjE">
             <objects>
                 <viewController storyboardIdentifier="MmobViewController" id="gOS-SP-BxJ" customClass="MmobViewController" customModule="Runner" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bq1-8z-QNM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t4p-ZX-fmv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
