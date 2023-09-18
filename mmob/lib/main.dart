@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import './models/mmob_customer_info.dart';
-import 'models/mmob_integration_configuration.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -39,11 +36,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _mmobBoot() async {
     try {
-      var messageFromNative = await methodChannel.invokeMethod('boot', {
-        "customerInfo": MmobCustomerInfo(email: "test@test.com"),
-        "configuration":
-            MmobIntegrationConfiguration(cp_id: "test", integration_id: "test")
-      });
+      var messageFromNative = await methodChannel.invokeMethod('boot'
+          // , {
+          //   "customerInfo": MmobCustomerInfo(email: "test@test.com"),
+          //   "configuration":
+          //       MmobIntegrationConfiguration(cp_id: "test", integration_id: "test")
+          // }
+          );
       // setState(() {
       //   _message = messageFromAndroid.toString();
       // });
