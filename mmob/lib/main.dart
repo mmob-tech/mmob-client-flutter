@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _mmobBoot() async {
     try {
-      var messageFromAndroid = await methodChannel.invokeMethod('boot');
+      var messageFromNative = await methodChannel.invokeMethod('boot');
       // setState(() {
       //   _message = messageFromAndroid.toString();
       // });
