@@ -18,11 +18,22 @@ class MmobViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func loadView() {
         super.loadView()
-        view = getMarketplace()
+        
+        let customView = getMarketplace()
+        view.addSubview(customView)
+        customView.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+                        customView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                        customView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                        customView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                        customView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+                    ]
+        NSLayoutConstraint.activate(constraints)
     }
 
     func getMarketplace() -> MmobClientView {
