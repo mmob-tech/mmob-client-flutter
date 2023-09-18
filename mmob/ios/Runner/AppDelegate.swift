@@ -21,7 +21,7 @@ import Flutter
       
     self.navigationController = UINavigationController(rootViewController: controller)
     self.window.rootViewController = self.navigationController
-    self.navigationController.setNavigationBarHidden(true, animated: false)
+    self.navigationController.setNavigationBarHidden(false, animated: false)
     self.window.makeKeyAndVisible()
       
       
@@ -45,10 +45,20 @@ extension AppDelegate {
             
             if call.method == "boot" {
                 let vc = UIStoryboard.init(name: "Main", bundle: .main)
-                        .instantiateViewController(withIdentifier: "MmobViewController") as! MmobViewController
-
+                    .instantiateViewController(withIdentifier: "MmobViewController") as! MmobViewController
+                
                 self.navigationController.pushViewController(vc, animated: true)
+            }
+            if call.method == "getMessage"{
+                self.getMessage(result: result)
             }
         }
     }
+    func getMessage(result: FlutterResult){
+        let message = "HI FROM IOS"
+        
+        result(message)
+    }
+    
 }
+
