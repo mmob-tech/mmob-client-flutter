@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Chase EF Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Chase EF Demo Home Page'),
     );
   }
 }
@@ -30,22 +30,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
 
   String _message = 'Test';
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
-  Future<void> _checkAvailability() async {
+  Future<void> _mmobBoot() async {
     try {
       var messageFromAndroid = await methodChannel.invokeMethod('boot');
-      setState(() {
-        _message = messageFromAndroid.toString();
-      });
+      // setState(() {
+      //   _message = messageFromAndroid.toString();
+      // });
     } on PlatformException catch (e) {
       print(e.message);
     }
@@ -53,7 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -62,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'What?',
+              'Click the Button to Boot',
             ),
             Text(
               _message,
@@ -72,10 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _checkAvailability,
-        tooltip: 'Increment',
+        onPressed: _mmobBoot,
+        tooltip: 'Boot MMOB',
         child: const Icon(Icons.add),
       ),
-    );
+    ));
   }
 }
