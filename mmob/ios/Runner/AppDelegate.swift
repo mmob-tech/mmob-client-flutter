@@ -49,16 +49,28 @@ extension AppDelegate {
                 
                 self.navigationController.pushViewController(vc, animated: true)
             }
-            if call.method == "getMessage"{
-                self.getMessage(result: result)
+            if call.method == "passData" {
+                if let arguments = call.arguments as? [String: Any],
+                   let integrationConfiguration = arguments["integration_configuration"] as? [String: Any],
+                   let customerInfo = arguments["customer_info"] as? [String: Any] {
+//                    print(arguments)
+                    // Now you can work with the data from Flutter
+                    print("Received cpid: \(integrationConfiguration["cp_id"] ??  "test"), firstName: \(customerInfo["first_name"] ?? "")")
+                    
+                    // Perform any native iOS actions with the data here.
+                    
+                    result(nil)
+                } else {
+                    result(FlutterError(code: "Invalid arguments", message: nil, details: nil))
+                }
+            }
+            
+            func getMessage(result: FlutterResult){
+                let message = "HI FROM IOS"
+                
+                result(message)
             }
         }
-    }
-    func getMessage(result: FlutterResult){
-        let message = "HI FROM IOS"
-        
-        result(message)
-    }
-    
-}
+    }}
+
 
