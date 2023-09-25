@@ -1,13 +1,21 @@
 class MmobIntegrationConfiguration {
-  String cp_id;
-  String integration_id;
+  String cpId;
+  String integrationId;
   String environment;
   String locale;
 
   MmobIntegrationConfiguration({
-    required this.cp_id,
-    required this.integration_id,
+    required this.cpId,
+    required this.integrationId,
     this.environment = "production",
     this.locale = "en_GB",
   });
+  Map<String, dynamic> toJson() {
+    return {
+      'cp_id': cpId,
+      'integration_id': integrationId,
+      'environment': environment,
+      'locale': locale,
+    };
+  }
 }

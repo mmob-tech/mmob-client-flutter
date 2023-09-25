@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mmob/models/mmob_customer_info.dart';
+import 'package:mmob/models/mmob_integration_configuration.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,16 +38,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _mmobBoot() async {
     try {
-      var messageFromNative = await methodChannel.invokeMethod('boot'
-          // , {
-          //   "customerInfo": MmobCustomerInfo(email: "test@test.com"),
-          //   "configuration":
-          //       MmobIntegrationConfiguration(cp_id: "test", integration_id: "test")
-          // }
-          );
-      // setState(() {
-      //   _message = messageFromAndroid.toString();
-      // });
+      await methodChannel.invokeMethod('boot');
+    } on PlatformException catch (e) {
+      print(e.message);
+    }
+  }
+
+  Future<void> _passData() async {
+    final bootInfo = MmobIntegrationConfiguration(
+        cpId: 'test_id', integrationId: 'test_cpd', environment: 'stag');
+    final userData = MmobCustomerInfo(
+      email: 'user@example.com',
+      firstName: 'John',
+      surname: 'Doe',
+      gender: 'Male',
+      title: 'Mr.',
+      buildingNumber: '123',
+      address1: '123 Main St',
+      townCity: 'Cityville',
+      postcode: '12345',
+      dob: '1990-01-01',
+    );
+    try {
+      await methodChannel.invokeMethod('passData', {
+        'integration_configuration': bootInfo.toJson(),
+        'customer_info': userData.toJson()
+      });
+      // print(bootInfo.toJson());
+      // print(userData.toJson());
     } on PlatformException catch (e) {
       print(e.message);
     }
@@ -73,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _mmobBoot,
+        onPressed: _passData,
         tooltip: 'Boot MMOB',
         child: const Icon(Icons.add),
       ),
