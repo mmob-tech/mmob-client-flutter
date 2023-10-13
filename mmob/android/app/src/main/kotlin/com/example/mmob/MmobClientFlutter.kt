@@ -12,7 +12,10 @@ class MmobClientFlutter : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        intent = Intent()
+        intent = getIntent()
+        val receiveBundle =intent.getBundleExtra("customer_info")
+        val userInfo = receiveBundle?.getSerializable("customer_info") as? Map<String,String>
+        print(userInfo)
         val mmobView: MmobView = findViewById(R.id.mmob_view)
 
         val client = MmobClient(mmobView, applicationContext, InstanceDomain.EFNETWORK)
