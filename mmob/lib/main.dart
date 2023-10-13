@@ -34,19 +34,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
 
-  String _message = 'Test';
-
+  String _message = 'BOOT';
   Future<void> _mmobBoot() async {
-    try {
-      await methodChannel.invokeMethod('boot');
-    } on PlatformException catch (e) {
-      print(e.message);
-    }
-  }
-
-  Future<void> _passData() async {
     final bootInfo = MmobIntegrationConfiguration(
-        cpId: 'test_id', integrationId: 'test_cpd', environment: 'stag');
+        cpId: 'cp_9AidXA6tIpz7RR4thMrrJ',
+        integrationId: 'cpd_7NNG7KCUjOjagv5Jxt5Ov',
+        environment: 'stag');
     final userData = MmobCustomerInfo(
       email: 'user@example.com',
       firstName: 'John',
@@ -60,12 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
       dob: '1990-01-01',
     );
     try {
-      await methodChannel.invokeMethod('passData', {
+      await methodChannel.invokeMethod('boot', {
         'integration_configuration': bootInfo.toJson(),
         'customer_info': userData.toJson()
       });
-      // print(bootInfo.toJson());
-      // print(userData.toJson());
     } on PlatformException catch (e) {
       print(e.message);
     }
@@ -93,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _passData,
+        onPressed: _mmobBoot,
         tooltip: 'Boot MMOB',
         child: const Icon(Icons.add),
       ),
