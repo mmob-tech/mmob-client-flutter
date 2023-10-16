@@ -35,6 +35,8 @@ how to set up a Method Channel in Flutter:
 
 Dart (Flutter) Side:
 `
+
+    import 'package:flutter/services.dart';
     
     static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
     String _message = 'BOOT';
