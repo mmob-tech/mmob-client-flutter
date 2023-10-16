@@ -22,4 +22,18 @@ class MmobCustomerInfo {
     this.postcode,
     this.dob,
   });
+  Map<String, dynamic> toJson() {
+    return {
+      'email': email,
+      'first_name': firstName,
+      'surname': surname,
+      'gender': gender,
+      'title': title,
+      'building_number': buildingNumber,
+      'address1': address1,
+      'town_city': townCity,
+      'postcode': postcode,
+      'dob': dob,
+    };
+  }
 }

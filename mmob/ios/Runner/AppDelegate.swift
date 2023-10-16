@@ -1,9 +1,11 @@
 import UIKit
+import MmobClient
 import SwiftUI
 import Flutter
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
+
   var navigationController: UINavigationController!
   let METHOD_CHANNEL_NAME = "com.client.mmob/methodChannel"
   override func application(
@@ -42,23 +44,19 @@ extension AppDelegate {
         let methodChannel = FlutterMethodChannel.init(name: self.METHOD_CHANNEL_NAME, binaryMessenger:controller.binaryMessenger)
         
         methodChannel.setMethodCallHandler { (call, result) in
-            
             if call.method == "boot" {
-                let vc = UIStoryboard.init(name: "Main", bundle: .main)
-                    .instantiateViewController(withIdentifier: "MmobViewController") as! MmobViewController
-                
-                self.navigationController.pushViewController(vc, animated: true)
-            }
-            if call.method == "getMessage"{
-                self.getMessage(result: result)
+                if let arguments = call.arguments as? [String: Any]{
+                    // Now you can work with the data from Flutter
+                    // Perform any native iOS actions with the data here.
+                    let vc = UIStoryboard.init(name: "Main", bundle: .main)
+                        .instantiateViewController(withIdentifier: "MmobViewController") as! MmobViewController
+                    vc.arguments = arguments
+                    self.navigationController.pushViewController(vc, animated: true)
+                } else {
+                    result(FlutterError(code: "Invalid arguments", message: nil, details: nil))
+                }
             }
         }
-    }
-    func getMessage(result: FlutterResult){
-        let message = "HI FROM IOS"
-        
-        result(message)
-    }
-    
-}
+    }}
+
 
