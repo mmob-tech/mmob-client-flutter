@@ -34,34 +34,37 @@ Flutter Method Channels are a communication mechanism that enables Flutter code 
 how to set up a Method Channel in Flutter:
 
 Dart (Flutter) Side:
-`static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
-String _message = 'BOOT';
-  Future<void> _mmobBoot() async {
-    final bootInfo = MmobIntegrationConfiguration(
-        cpId: 'YOUR_CP_ID_HERE',
-        integrationId: 'YOUR_CP_DEPLOYMENT_ID_HERE',
-        environment: 'environment');
-    final userData = MmobCustomerInfo(
-      email: 'user@example.com',
-      firstName: 'John',
-      surname: 'Doe',
-      gender: 'Male',
-      title: 'Mr.',
-      buildingNumber: '123',
-      address1: '123 Main St',
-      townCity: 'Cityville',
-      postcode: '12345',
-      dob: '1990-01-01',
-    );
-    try {
-      await methodChannel.invokeMethod('boot', {
-        'integration_configuration': bootInfo.toJson(),
-        'customer_info': userData.toJson()
-      });
-    } on PlatformException catch (e) {
-      print(e.message);
-    }
-  }
+`
+    
+    static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
+    String _message = 'BOOT';
+      Future<void> _mmobBoot() async {
+        final bootInfo = MmobIntegrationConfiguration(
+            cpId: 'YOUR_CP_ID_HERE',
+            integrationId: 'YOUR_CP_DEPLOYMENT_ID_HERE',
+            environment: 'environment');
+        final userData = MmobCustomerInfo(
+          email: 'user@example.com',
+          firstName: 'John',
+          surname: 'Doe',
+          gender: 'Male',
+          title: 'Mr.',
+          buildingNumber: '123',
+          address1: '123 Main St',
+          townCity: 'Cityville',
+          postcode: '12345',
+          dob: '1990-01-01',
+        );
+        try {
+          await methodChannel.invokeMethod('boot', {
+            'integration_configuration': bootInfo.toJson(),
+            'customer_info': userData.toJson()
+          });
+        } on PlatformException catch (e) {
+          print(e.message);
+        }
+      }
+
 `
 
 Native (Android) Side:
