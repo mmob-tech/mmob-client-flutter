@@ -17,14 +17,14 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel).setMethodCallHandler{
             call, result->
             if (call.method=="boot"){
-                mmobBoot(call.arguments as? Map<String,Any>, result)
+                mmobBoot(call.arguments as Map<String,Any>, result)
             }
             else{
                 result.notImplemented()
             }
         }
     }
-    private fun mmobBoot(argument: Map<String, Any>?,result: MethodChannel.Result){
+    private fun mmobBoot(argument: Map<String, Any>,result: MethodChannel.Result){
         val intent = Intent(this, MmobClientFlutter::class.java)
         val userInfo = argument?.get("customer_info") as? Map<String, String>
         val configuration = argument?.get("integration_configuration") as? Map<String,String>

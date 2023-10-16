@@ -21,22 +21,22 @@ class MmobClientFlutter : FlutterActivity() {
         val client = MmobClient(mmobView, applicationContext, InstanceDomain.EFNETWORK)
 
         val integration = MmobClient.MmobIntegrationConfiguration(
-                cp_id = configuration?.get("cp_id") ?: "",
-                cp_deployment_id = configuration?.get("integration_id") ?: "",
-                environment = configuration?.get("environment") ?: ""
+                cp_id = configuration!!.get("cp_id")!!,
+                cp_deployment_id = configuration!!.get("integration_id")!!,
+                environment = configuration.get("environment")!!
         )
 
         val customerInfo = MmobClient.MmobCustomerInfo(
                 customerInfo = MmobClient.MmobCustomerInfo.Configuration(
-                    email = userInfo?.get("email") ?:"",
-                    first_name = userInfo?.get("first_name") ?:"",
-                    surname = userInfo?.get("surname") ?:"",
-                    title = userInfo?.get("title") ?:"",
-                    building_number = userInfo?.get("building_number") ?:"",
-                    address_1 = userInfo?.get("address_1") ?: "",
-                    town_city = userInfo?.get("town_city") ?: "",
-                    postcode = userInfo?.get("postcode") ?: "",
-                    dob = userInfo?.get("dob") ?: ""
+                    email = userInfo?.get("email"),
+                    first_name = userInfo?.get("first_name"),
+                    surname = userInfo?.get("surname"),
+                    title = userInfo?.get("title"),
+                    building_number = userInfo?.get("building_number"),
+                    address_1 = userInfo?.get("address_1"),
+                    town_city = userInfo?.get("town_city"),
+                    postcode = userInfo?.get("postcode"),
+                    dob = userInfo?.get("dob")
 
                 )
         )
