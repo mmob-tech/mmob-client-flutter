@@ -45,11 +45,8 @@ extension AppDelegate {
         
         methodChannel.setMethodCallHandler { (call, result) in
             if call.method == "boot" {
-                if let arguments = call.arguments as? [String: Any],
-                   let integrationConfiguration = arguments["integration_configuration"] as? [String: String],
-                   let customerInfo = arguments["customer_info"] as? [String: String] {
+                if let arguments = call.arguments as? [String: Any]{
                     // Now you can work with the data from Flutter
-                    // print("Received cpid: \(integrationConfiguration["cp_id"] ??  "test"), firstName: \(customerInfo["first_name"] ?? "")")
                     // Perform any native iOS actions with the data here.
                     let vc = UIStoryboard.init(name: "Main", bundle: .main)
                         .instantiateViewController(withIdentifier: "MmobViewController") as! MmobViewController
