@@ -25,9 +25,9 @@ struct MMOBEcosystemView: UIViewRepresentable {
             ),
             customer: MmobCustomerInfo(
                 email: "john.smith@example.com",
-                first_name: "John",
-                surname: "Smith",
                 title: "Mr",
+                first_name: "John",
+                surname: "Smith",               
                 building_number: "Flat 81",
                 address_1: "Marconi Square",
                 town_city: "Chelmsford",

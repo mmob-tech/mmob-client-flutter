@@ -50,15 +50,16 @@ class MmobViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
            ),
            customer: MmobCustomerInfo(
             email: customerInfo?["email"],
+            title: customerInfo?["title"],
             first_name:customerInfo?["first_name"],
             surname: customerInfo?["surname"],
-            gender: customerInfo?["gender"],
-            title: customerInfo?["title"],
+            dob: customerInfo?["dob"],
             building_number: customerInfo?["building_number"],
             address_1:customerInfo?["address_1"],
             town_city: customerInfo?["town_city"],
             postcode: customerInfo?["postcode"],
-            dob: customerInfo?["dob"]
+            gender: customerInfo?["gender"]
+           
            )
        )
         return client.loadIntegration(mmobConfiguration: configuration, instanceDomain: InstanceDomain.EFNETWORK)
