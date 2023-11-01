@@ -20,14 +20,14 @@ import Flutter
               
     linkNativeCode(controller: controller)
       
-      
+    GeneratedPluginRegistrant.register(with: self)
+
     self.navigationController = UINavigationController(rootViewController: controller)
     self.window.rootViewController = self.navigationController
     self.navigationController.setNavigationBarHidden(false, animated: false)
     self.window.makeKeyAndVisible()
       
       
-    GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }
