@@ -20,14 +20,14 @@ import Flutter
               
     linkNativeCode(controller: controller)
       
-      
+    GeneratedPluginRegistrant.register(with: self)
+
     self.navigationController = UINavigationController(rootViewController: controller)
     self.window.rootViewController = self.navigationController
     self.navigationController.setNavigationBarHidden(false, animated: false)
     self.window.makeKeyAndVisible()
       
       
-    GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }
@@ -48,10 +48,25 @@ extension AppDelegate {
                 if let arguments = call.arguments as? [String: Any]{
                     // Now you can work with the data from Flutter
                     // Perform any native iOS actions with the data here.
-                    let vc = UIStoryboard.init(name: "Main", bundle: .main)
-                        .instantiateViewController(withIdentifier: "MmobViewController") as! MmobViewController
-                    vc.arguments = arguments
-                    self.navigationController.pushViewController(vc, animated: true)
+                    struct MmobView: UIViewControllerRepresentable {
+                        var arguments: [String: Any]!
+                        func makeUIViewController(context: Context) -> MmobViewController {
+                            let ViewController = MmobViewController()
+                            ViewController.arguments=arguments
+                            return ViewController
+                        }
+
+                        func updateUIViewController(_ uiViewController: MmobViewController, context: Context) {
+                            // Updates the state of the specified view controller with new information from SwiftUI.
+                        }
+                    }
+                    if let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
+                       let viewController = keyWindow.rootViewController {
+                        let swiftUIView = MmobView(arguments: arguments)
+                        let hostingController = UIHostingController(rootView: swiftUIView)
+                        viewController.present(hostingController, animated: true, completion: nil)
+                        result(nil)
+                    }
                 } else {
                     result(FlutterError(code: "Invalid arguments", message: nil, details: nil))
                 }
