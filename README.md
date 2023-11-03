@@ -149,4 +149,5 @@ Native (iOS) Side:
 Similar to Android project, please see example codes for the implementation of method channel under `ios` project, `Runner` folder, `AppDelegate.swift`
 Then, you may use our existing SDK for iOS, you may refer to our public repo: https://github.com/mmob-tech/mmob-client-ios
 or you refer to `MmobViewController.swift`
-** Notes: For iOS, we do not recommend to instantiate a new viewcontroller to load our integration. Instead, you may use hosting UI controller
+
+** Notes: For iOS, we do not recommend to instantiate a new viewcontroller to load our integration. Instead, you may use UIHostingController
