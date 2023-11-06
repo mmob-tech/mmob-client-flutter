@@ -37,9 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _message = 'BOOT';
   Future<void> _mmobBoot() async {
     final bootInfo = MmobIntegrationConfiguration(
-        cpId: 'cp_9AidXA6tIpz7RR4thMrrJ',
-        integrationId: 'cpd_7NNG7KCUjOjagv5Jxt5Ov',
-        environment: 'stag');
+        cpId: 'YOUR_CP_ID', integrationId: 'YOUR_CPD_ID', environment: 'prod');
     final userData = MmobCustomerInfo(
       email: 'user@example.com',
       firstName: 'John',
