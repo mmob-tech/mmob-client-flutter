@@ -151,4 +151,5 @@ Then, you may use our existing SDK for iOS, you may refer to our public repo: ht
 or you refer to `MmobViewController.swift`
 
 ** Notes: For iOS, we do not recommend to instantiate a new viewcontroller to load our integration. Instead, you may use UIHostingController
+
 ** min SDK version for android is 21 and min iOS version is 13
