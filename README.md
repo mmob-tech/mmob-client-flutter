@@ -55,7 +55,7 @@ Dart (Flutter) Side:
           address1: '123 Main St',
           townCity: 'Cityville',
           postcode: '12345',
-          dob: '1990-01-01T00:00:00.000+08:00, //must pass correct datetime format*
+          dob: '1990-01-01T00:00:00.000+00:00, //must pass correct datetime format*
         );
         try {
           await methodChannel.invokeMethod('boot', {
