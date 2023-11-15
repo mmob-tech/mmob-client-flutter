@@ -37,7 +37,7 @@ Dart (Flutter) Side:
 `
 
     import 'package:flutter/services.dart';
-    
+
     static const methodChannel = MethodChannel('com.client.mmob/methodChannel');
     String _message = 'BOOT';
       Future<void> _mmobBoot() async {
@@ -55,7 +55,7 @@ Dart (Flutter) Side:
           address1: '123 Main St',
           townCity: 'Cityville',
           postcode: '12345',
-          dob: '1990-01-01',
+          dob: '1990-01-01T00:00:00.000+08:00, //must pass correct datetime format*
         );
         try {
           await methodChannel.invokeMethod('boot', {
@@ -67,14 +67,14 @@ Dart (Flutter) Side:
         }
       }
 
-`
+\* Datetime format please refer to https://en.wikipedia.org/wiki/ISO_8601
 
 Native (Android) Side:
 // Inside the native code (e.g., MainActivity.kt)
 `
-    
-    import io.flutter.plugin.common.MethodChannel    
-    
+
+    import io.flutter.plugin.common.MethodChannel
+
     class MainActivity: FlutterActivity() {
     private val channel = "com.client.mmob/methodChannel"
 
@@ -117,15 +117,15 @@ or you may refer to `MmobClientFlutter.kt` under android project to see the exam
     val userInfo = receiveBundle?.getSerializable("customer_info") as? Map<String,String>
     val configuration = receiveBundle?.getSerializable("integration_configuration") as? Map<String,String>
     val mmobView: MmobView = findViewById(R.id.mmob_view)
-    
+
             val client = MmobClient(mmobView, applicationContext, InstanceDomain.EFNETWORK)
-    
+
             val integration = MmobClient.MmobIntegrationConfiguration(
                     cp_id = configuration!!.get("cp_id")!!,
                     cp_deployment_id = configuration!!.get("integration_id")!!,
                     environment = configuration.get("environment")!!
             )
-    
+
             val customerInfo = MmobClient.MmobCustomerInfo(
                     customerInfo = MmobClient.MmobCustomerInfo.Configuration(
                         email = userInfo?.get("email"),
@@ -137,7 +137,7 @@ or you may refer to `MmobClientFlutter.kt` under android project to see the exam
                         town_city = userInfo?.get("town_city"),
                         postcode = userInfo?.get("postcode"),
                         dob = userInfo?.get("dob")
-    
+
                     )
             )
             client.loadIntegration(integration = integration, customerInfo = customerInfo)
@@ -150,6 +150,6 @@ Similar to Android project, please see example codes for the implementation of m
 Then, you may use our existing SDK for iOS, you may refer to our public repo: https://github.com/mmob-tech/mmob-client-ios
 or you refer to `MmobViewController.swift`
 
-** Notes: For iOS, we do not recommend to instantiate a new viewcontroller to load our integration. Instead, you may use UIHostingController
+\*\* Notes: For iOS, we do not recommend to instantiate a new viewcontroller to load our integration. Instead, you may use UIHostingController
 
-** min SDK version for android is 21 and min iOS version is 13
+\*\* min SDK version for android is 21 and min iOS version is 13
