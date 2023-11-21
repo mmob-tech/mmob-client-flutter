@@ -6,6 +6,7 @@
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -27,7 +28,8 @@
         </activity>
         <activity
             android:name=".MmobClientFlutter"
-            android:label="BOOT Activity">
+            android:label="BOOT Activity"
+            android:screenOrientation="portrait">
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
