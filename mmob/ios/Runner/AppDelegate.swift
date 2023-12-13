@@ -12,22 +12,13 @@ import Flutter
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-      
-    
-
+ 
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-
-              
+       
     linkNativeCode(controller: controller)
       
     GeneratedPluginRegistrant.register(with: self)
 
-    self.navigationController = UINavigationController(rootViewController: controller)
-    self.window.rootViewController = self.navigationController
-    self.navigationController.setNavigationBarHidden(false, animated: false)
-    self.window.makeKeyAndVisible()
-      
-      
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }
